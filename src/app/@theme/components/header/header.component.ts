@@ -11,12 +11,19 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 })
 export class HeaderComponent implements OnInit {
 
-
   @Input() position = 'normal';
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [
+    {
+      title: 'Profile',
+    },
+    {
+      title: 'Log out',
+      link: '/auth/logout'
+    },
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
