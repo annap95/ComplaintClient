@@ -13,24 +13,20 @@ import {
   NbSidebarModule,
   NbTabsetModule,
   NbThemeModule,
-  NbUserModule,
-  NbCheckboxModule,
+  NbCheckboxModule
 } from '@nebular/theme';
 
 import {
   FooterComponent,
   HeaderComponent,
-  SearchInputComponent,
-  ThemeSettingsComponent,
   ThemeSwitcherComponent,
+  NbUserComponent
 } from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
-import {
-  OneColumnLayoutComponent,
-  SampleLayoutComponent,
-} from './layouts';
+import { SampleLayoutComponent } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
+import { NbSharedModule } from "@nebular/theme/components/shared/shared.module";
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -40,11 +36,11 @@ const NB_MODULES = [
   NbTabsetModule,
   NbRouteTabsetModule,
   NbMenuModule,
-  NbUserModule,
   NbActionsModule,
   NbSearchModule,
   NbSidebarModule,
   NbCheckboxModule,
+  NbSharedModule,
   NgbModule,
 ];
 
@@ -52,9 +48,6 @@ const COMPONENTS = [
   ThemeSwitcherComponent,
   HeaderComponent,
   FooterComponent,
-  SearchInputComponent,
-  ThemeSettingsComponent,
-  OneColumnLayoutComponent,
   SampleLayoutComponent,
 ];
 
@@ -78,8 +71,8 @@ const NB_THEME_PROVIDERS = [
 
 @NgModule({
   imports: [...BASE_MODULES, ...NB_MODULES],
-  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
-  declarations: [...COMPONENTS, ...PIPES],
+  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES, NbUserComponent],
+  declarations: [...COMPONENTS, ...PIPES, NbUserComponent],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

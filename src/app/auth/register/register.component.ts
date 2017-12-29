@@ -12,18 +12,25 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   email: AbstractControl;
+  passwords: FormGroup;
   password: AbstractControl;
+  confirmPassword: AbstractControl;
 
   error: boolean;
   submitted: boolean = false;
 
   constructor(fb: FormBuilder, private router: Router) {
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.email])],
-      'password': ['', Validators.compose([Validators.required])]
+      'email': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.email])],
+      'passwords': fb.group({
+        'password': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])],
+        'confirmPassword': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])]
+      })
     });
     this.email = this.form.controls['email'];
-    this.password = this.form.controls['password'];
+    this.passwords = <FormGroup> this.form.controls['passwords'];
+    this.password = this.passwords.controls['password'];
+    this.confirmPassword = this.passwords.controls['confirmPassword'];
   }
 
   ngOnInit() {
