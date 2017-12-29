@@ -2,9 +2,9 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Home',
     icon: 'nb-home',
-    link: '/pages/dashboard',
+    link: '/pages/home',
     home: true,
   },
   {
@@ -23,10 +23,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Grid',
         link: '/pages/ui-features/grid',
-      },
-      {
-        title: 'Icons',
-        link: '/pages/ui-features/icons',
       },
       {
         title: 'Modals',
@@ -65,21 +61,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-gear',
     children: [
       {
-        title: 'Tree',
-        link: '/pages/components/tree',
-      }, {
         title: 'Notifications',
         link: '/pages/components/notifications',
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    icon: 'nb-bar-chart',
-    children: [
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
       },
     ],
   },
@@ -93,4 +76,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Users',
+    children: [
+      {
+        title: 'Customers',
+        link: '/pages/users/customers',
+      }
+    ]
+  },
+  {
+    title: 'Add Complaint',
+    link: '/pages/complaints/add'
+  }
 ];

@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/delay';
 
-// TODO: move layouts into the framework
 @Component({
   selector: 'ngx-sample-layout',
   styleUrls: ['./sample.layout.scss'],
@@ -28,11 +27,6 @@ import 'rxjs/add/operator/delay';
                    tag="menu-sidebar"
                    responsive
                    [right]="sidebar.id === 'right'">
-        <nb-sidebar-header>
-          <a href="#" class="btn btn-hero-success main-btn">
-            <i class="nb-home"></i> <span>Home</span>
-          </a>
-        </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 

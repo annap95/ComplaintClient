@@ -1,5 +1,4 @@
-<div class="header-container"
-     [class.left]="position === 'normal'">
+<div class="header-container">
   <div class="logo-containter">
     <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
     <div class="logo" (click)="goToHome()">Complaint<span>System</span></div>
@@ -7,11 +6,8 @@
   <ngx-theme-switcher></ngx-theme-switcher>
 </div>
 
-<nb-actions
-  size="medium"
-  class="header-container"
-  [class.right]="position === 'normal'">
+<nb-actions size="medium" class="header-container" [class.right]="true">
   <nb-action>
-    <nb-user [menu]="userMenu" name="Your Account"></nb-user>
+    <nb-user [menu]="userMenu"></nb-user>
   </nb-action>
 </nb-actions>

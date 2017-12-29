@@ -5,7 +5,7 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 @Component({
   selector: 'ngx-theme-switcher',
-  styleUrls: ['./theme-switcher.component.scss'],
+  styleUrls: ['theme-switcher.component.scss'],
   template: `
     <label class="theme-switch">
       <span class="light">Light</span>
@@ -20,8 +20,7 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 export class ThemeSwitcherComponent implements OnInit {
   theme: NbJSThemeOptions;
 
-  constructor(private themeService: NbThemeService, private analyticsService: AnalyticsService) {
-  }
+  constructor(private themeService: NbThemeService, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
     this.themeService.getJsTheme()

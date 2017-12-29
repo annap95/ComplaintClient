@@ -1,8 +1,7 @@
 <div class="user-container" (click)="toggleMenu()" [ngClass]="{'with-menu' : hasMenu()}">
   <div class="user-icon fa fa-user-circle"></div>
-
   <div class="info-container">
-    <div *ngIf="showNameValue && name" class="user-name">{{ name }}</div>
+    <div class="user-name">My Account</div>
   </div>
 
   <div *ngIf="hasMenu()"
@@ -10,16 +9,7 @@
     <ul>
       <li class="arrow"></li>
       <li *ngFor="let item of menu" [class.with-icon]="item.icon">
-        <a *ngIf="item.link && !item.url" [routerLink]="item.link" [attr.target]="item.target">
-          <span *ngIf="item.icon" class="item-icon {{ item.icon  }}"></span>
-          {{ item.title }}
-        </a>
-        <a *ngIf="item.url && !item.link" [attr.href]="item.url" [attr.target]="item.target">
-          <span *ngIf="item.icon" class="item-icon {{ item.icon  }}"></span>
-          {{ item.title }}
-        </a>
-        <a *ngIf="!item.link && !item.url" href="#" [attr.target]="item.target"
-           (click)="itemClick($event, item)">
+        <a *ngIf="item.link && !item.url" [routerLink]="item.link">
           <span *ngIf="item.icon" class="item-icon {{ item.icon  }}"></span>
           {{ item.title }}
         </a>
