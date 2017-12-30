@@ -12,14 +12,8 @@ const routes: Routes = [{
     component: HomeComponent
   },
   {
-    path: 'ui-features',
-    loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
-  }, {
     path: 'components',
     loadChildren: './components/components.module#ComponentsModule',
-  }, {
-    path: 'forms',
-    loadChildren: './forms/forms.module#FormsModule',
   }, {
     path: 'tables',
     loadChildren: './tables/tables.module#TablesModule',

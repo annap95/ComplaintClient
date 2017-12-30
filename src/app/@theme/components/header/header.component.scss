@@ -113,3 +113,10 @@
   }
 }
 
+@include nb-install-component() {
+  .nb-menu {
+    color: nb-theme(color-fg-highlight);
+    font-weight: 900;
+  }
+}
+
