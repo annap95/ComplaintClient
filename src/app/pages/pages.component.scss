@@ -1,0 +1,14 @@
+@import '../@theme/styles/themes';
+@import '~@nebular/theme/styles/themes';
+
+@include nb-install-component {
+
+  .menu-item a.active {
+    background-color: rgba(0,255,170,.25);
+    color: #fff;
+    border-color: #00f9a6;
+    box-shadow: 0 2px 12px 0 rgba(0,255,170,.25);
+  }
+
+
+}

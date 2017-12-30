@@ -10,13 +10,6 @@ const routes: Routes = [{
   children: [{
     path: 'home',
     component: HomeComponent
-  },
-  {
-    path: 'components',
-    loadChildren: './components/components.module#ComponentsModule',
-  }, {
-    path: 'tables',
-    loadChildren: './tables/tables.module#TablesModule',
   }, {
     path: 'users',
     loadChildren: './users/users.module#UsersModule',
@@ -25,7 +18,7 @@ const routes: Routes = [{
     loadChildren: './complaints/complaints.module#ComplaintsModule',
   }, {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'home',
       pathMatch: 'full',
     }
   ],

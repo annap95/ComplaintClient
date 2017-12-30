@@ -9,8 +9,8 @@ export class NbUserMenuItem {
 
 @Component({
   selector: 'nb-user',
-  styleUrls: ['nb-user.scss'],
-  templateUrl: 'nb-user.html',
+  styleUrls: ['nb-user.component.scss'],
+  templateUrl: 'nb-user.component.html',
 })
 export class NbUserComponent {
 
