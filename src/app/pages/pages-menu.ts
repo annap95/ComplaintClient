@@ -77,18 +77,14 @@ export const MENU_ITEMS_CUSTOMER: NbMenuItem[] = [
     title: 'COMPLAINTS',
     group: true,
   },
-
+  {
+    title: 'My Complaints',
+    icon: 'nb-list',
+    link: '/pages/complaints',
+  },
   {
     title: 'Add Complaint',
     icon: 'nb-compose',
     link: '/pages/complaints/add',
   },
 ];
-
-/*
- {
- title: 'My Complaints',
- icon: 'nb-list',
- link: '/pages/complaints',
- },
- */

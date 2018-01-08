@@ -11,7 +11,7 @@ export class HttpWrapper {
   constructor(private http: Http, private router: Router, private authService: AuthService) { }
 
   addAuthHeader(headers: Headers) {
-    headers.append('Authorization', localStorage.getItem('authToken'));
+    headers.append('AUTH-TOKEN', localStorage.getItem('authToken'));
   }
 
   handleErrors(observable) {

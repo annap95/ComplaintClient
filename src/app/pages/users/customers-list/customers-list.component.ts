@@ -15,10 +15,13 @@ import { SmartTableService } from '../../../@core/data/smart-table.service';
 export class CustomersListComponent {
 
   settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+    actions: {
+      columnTitle: 'Actions',
+      add: false,
+      edit: true,
+      delete: true,
+      custom: [],
+      position: 'right', // left|right
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',

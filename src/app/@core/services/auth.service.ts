@@ -38,4 +38,11 @@ export class AuthService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
   }
+
+  register(email: string, password: string, role: string) {
+    let data = btoa(email + ":" + password);
+    let headers = new Headers();
+    headers.append("Authorization", data);
+    return this.http.get(this.url + "user/register/" + role, {headers: headers})
+  }
 }

@@ -5,45 +5,40 @@
          class="alert alert-danger" role="alert">
       <div><strong>Oh snap!</strong></div>
     </div>
-    <div *ngIf="false"
-         class="alert alert-success" role="alert">
-      <div><strong>Hooray!</strong></div>
-    </div>
     <div class="form-group">
       <label for="input-email" class="sr-only">Email address</label>
-      <input name="email" [formControl]="email" id="input-email"
-             class="form-control" placeholder="Email address"
-             [class.form-control-danger]="email.invalid && email.touched">
-      <small class="form-text error" *ngIf="email.invalid && email.touched">
-        Email is required!
-      </small>
-      <small class="form-text error"
-             *ngIf="email.invalid && email.touched">
-        Email should be the real one!
+      <input name="email" [formControl]="email" id="input-email" class="form-control"
+             placeholder="Email address"
+             [class.form-control-success]="email.touched && email.valid"
+             [class.form-control-danger]="email.touched && email.invalid"
+             autofocus>
+      <small class="form-text error" *ngIf="email.touched && email.invalid">
+        Correct email is required!
       </small>
     </div>
     <div class="form-group">
       <label for="input-password" class="sr-only">Password</label>
       <input name="password" [formControl]="password" type="password" id="input-password"
              class="form-control" placeholder="Password"
-             [class.form-control-danger]="password.invalid && password.touched">
-      <small class="form-text error" *ngIf="password.invalid && password.touched">
+             [class.form-control-success]="password.touched && password.valid"
+             [class.form-control-danger]="password.touched && password.invalid">
+      <small class="form-text error" *ngIf="password.touched && password.invalid">
         Password is required!
       </small>
     </div>
     <div class="form-group">
       <label for="input-re-password" class="sr-only">Repeat password</label>
-      <input
-        name="rePass" [formControl]="confirmPassword" type="password" id="input-re-password"
-        class="form-control" placeholder="Confirm Password">
+      <input name="rePass" [formControl]="confirmPassword" type="password" id="input-re-password"
+             class="form-control" placeholder="Confirm Password"
+             [class.form-control-success]="confirmPassword.touched && confirmPassword.valid"
+             [class.form-control-danger]="confirmPassword.touched && confirmPassword.invalid">
+      <small class="form-text error" *ngIf="password.touched && password.invalid">
+        Password is required!
+      </small>
     </div>
-    <!--<div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">-->
-      <!--&lt;!&ndash;<nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="getConfigValue('forms.register.terms')">&ndash;&gt;-->
-        <!--&lt;!&ndash;Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>&ndash;&gt;-->
-      <!--&lt;!&ndash;</nb-checkbox>&ndash;&gt;-->
-    <!--</div>-->
-    <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"
-            [class.btn-pulse]="submitted">
+    <!-- tu kom -->
+    <button type="submit" class="btn btn-block btn-hero-success"
+            [disabled]="submitted || !form.valid">
       Register
     </button>
   </form>

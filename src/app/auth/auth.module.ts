@@ -21,7 +21,8 @@ import {AuthService} from "../@core/services/auth.service";
     FormsModule,
     CommonModule,
     RouterModule,
-    NbAuthModule],
+    NbAuthModule
+  ],
   declarations: [
     LoginComponent,
     RegisterComponent,

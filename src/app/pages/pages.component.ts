@@ -9,8 +9,7 @@ import { MENU_ITEMS_ADMIN, MENU_ITEMS_CONSULTANT, MENU_ITEMS_CUSTOMER } from './
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
     </ngx-sample-layout>
-  `,
-  styleUrls: ['pages.component.scss']
+  `
 })
 export class PagesComponent implements OnInit {
 

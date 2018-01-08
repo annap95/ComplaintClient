@@ -4,9 +4,23 @@ import { CommonModule } from '@angular/common';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
+import {NbAuthModule, NbDummyAuthProvider} from "@nebular/auth";
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
+  ...NbAuthModule.forRoot({
+    providers: {
+      email: {
+        service: NbDummyAuthProvider,
+        config: {
+          delay: 3000,
+          login: {
+            rememberMe: true,
+          },
+        },
+      },
+    },
+  }).providers,
   AnalyticsService,
 ];
 
