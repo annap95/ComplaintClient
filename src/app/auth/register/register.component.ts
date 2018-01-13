@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, AbstractControl, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import { NbAuthBlockComponent } from "@nebular/auth";
+import { EqualPasswordsValidator } from "../../@core/validators/equal-passwords-validator";
+import { AuthService } from "../../@core/services/auth.service";
 
 @Component({
   templateUrl: 'register.component.html',
@@ -17,15 +18,17 @@ export class RegisterComponent implements OnInit {
   confirmPassword: AbstractControl;
 
   error: boolean;
+  success: boolean;
+
   submitted: boolean = false;
 
-  constructor(fb: FormBuilder, private router: Router) {
+  constructor(fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.email])],
+      'email': ['', Validators.compose([Validators.required, Validators.email])],
       'passwords': fb.group({
         'password': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])],
         'confirmPassword': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])]
-      })
+      }, {validator: EqualPasswordsValidator.validate('password', 'confirmPassword')})
     });
     this.email = this.form.controls['email'];
     this.passwords = <FormGroup> this.form.controls['passwords'];
@@ -34,34 +37,29 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // if(localStorage.getItem('authToken') && localStorage.getItem('userRole')) {
-    //   this.router.navigate(['dashboard']);
-    // }
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['pages/complaints']);
+    }
   }
 
   register() {
-    console.log("Przycisk");
-    console.log(this.email.value);
-    // if(!this.submitted && this.form.valid) {
-    //   this.submitted = true;
-    // return this.authenticationService.login(values['email'], values['password'])
-    //   .subscribe(
-    //     (data) => {
-    //       let authToken = data.token;
-    //       let userRole = data.userRole;
-    //       this.authenticationService.authToken = authToken;
-    //       this.authenticationService.userRole = userRole;
-    //       localStorage.setItem('authToken', authToken);
-    //       localStorage.setItem('userRole', userRole);
-    //       this.error = false;
-    //       this.router.navigate(['home']);
-    //     },
-    //     (error) => {
-    //       this.form.reset();
-    //       this.error = true;
-    //       this.submitted = false;
-    //     }
-    //   );
-    // }
+    if(!this.submitted && this.form.valid) {
+      this.submitted = true;
+      return this.authService.registerCustomer(this.email.value, this.password.value)
+        .subscribe(
+          (data) => {
+            this.form.reset();
+            this.error = false;
+            this.success = true;
+            this.submitted = false;
+          },
+          (error) => {
+            this.form.reset();
+            this.error = true;
+            this.success = false;
+            this.submitted = false;
+          });
+    }
   }
+
 }

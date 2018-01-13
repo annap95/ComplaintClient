@@ -17,6 +17,9 @@ const routes: Routes = [{
     path: 'complaints',
     loadChildren: './complaints/complaints.module#ComplaintsModule',
   }, {
+    path: 'profile',
+    loadChildren: './profile/profile.module#ProfileModule'
+  }, {
       path: '',
       redirectTo: 'home',
       pathMatch: 'full',

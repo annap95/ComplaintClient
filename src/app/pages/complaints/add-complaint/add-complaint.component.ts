@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ComplaintService } from "../../../@core/services/complaint.service";
-import {ComplaintAddRequest} from "../../../@core/model/requests/complaint-add-request";
+import { ComplaintAddRequest } from "../../../@core/model/requests/complaint-add-request";
 
 @Component({
   selector: 'add-complaint',
@@ -20,6 +20,10 @@ export class AddComplaintComponent {
   claim: AbstractControl;
   dataProcessingPermission: AbstractControl;
 
+  claimOptions = ['OPT1', 'OPT2', 'OPT3', 'OPT4'];
+
+  error: boolean;
+  submitted: boolean = false;
 
   constructor(fb: FormBuilder, private complaintService: ComplaintService) {
     this.form = fb.group({
@@ -65,9 +69,3 @@ export class AddComplaintComponent {
     )
   }
 }
-
-
-/*
- error: boolean;
- submitted: boolean = false;
- */

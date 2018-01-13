@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.isLoggedIn()) {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['pages/complaints']);
     }
   }
 
@@ -39,10 +39,14 @@ export class LoginComponent implements OnInit {
           (data) => {
             let authToken = data.token;
             let userRole = data.userRole;
+            let customerId = data.customerId;
+            let employeeId = data.employeeId;
             this.authService.authToken = authToken;
             this.authService.userRole = userRole;
             localStorage.setItem('authToken', authToken);
             localStorage.setItem('userRole', userRole);
+            localStorage.setItem('customerId', customerId);
+            localStorage.setItem('employeeId', employeeId);
             this.error = false;
             this.router.navigate(['home']);
           },

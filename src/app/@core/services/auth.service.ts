@@ -1,29 +1,40 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class AuthService {
 
   authToken: string;
   userRole: string;
-  url: string = "http://localhost:8080/";
+  url: string;
 
   constructor(private http: Http) {
     this.authToken = localStorage.getItem('authToken');
     this.userRole = localStorage.getItem('userRole');
+    this.url = environment.url;
   }
 
   isLoggedIn(): boolean {
     return !!(localStorage.getItem('authToken') && localStorage.getItem('userRole'));
   }
 
+  getUserRole(): string {
+    return localStorage.getItem('userRole');
+  }
+
+  getCustomerId(): string {
+    return localStorage.getItem('customerId');
+  }
+
   login(email: string, password: string) {
     let data = btoa(email + ":" + password);
     let headers = new Headers();
     headers.append("Authorization", data);
-    return this.http.get(this.url + "user/login", {headers: headers})
+    return this.http.get(this.url + "auth/login", {headers: headers})
       .map(response => {
-        if(response.status != 200 || !response.json() || !response.json().token || !response.json().userRole) {
+        if(response.status != 200 || !response.json() ||
+           !response.json().token || !response.json().userRole) {
           throw new Error('Authentication failed');
         }
         else {
@@ -37,12 +48,14 @@ export class AuthService {
     this.userRole = null;
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('customerId');
+    localStorage.removeItem('employeeId');
   }
 
-  register(email: string, password: string, role: string) {
+  registerCustomer(email: string, password: string) {
     let data = btoa(email + ":" + password);
     let headers = new Headers();
     headers.append("Authorization", data);
-    return this.http.get(this.url + "user/register/" + role, {headers: headers})
+    return this.http.post(this.url + "auth/register/customer", null, {headers: headers});
   }
 }

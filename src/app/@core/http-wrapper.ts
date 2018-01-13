@@ -41,4 +41,11 @@ export class HttpWrapper {
     return this.handleErrors(observable);
   }
 
+  put(url, data) {
+    let headers = new Headers();
+    this.addAuthHeader(headers);
+    let observable = this.http.put(url, data, {headers: headers});
+    return this.handleErrors(observable);
+  }
+
 }
