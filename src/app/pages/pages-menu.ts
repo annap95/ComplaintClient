@@ -2,12 +2,6 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
   {
-    title: 'Home',
-    icon: 'nb-home',
-    link: '/pages/home',
-    home: true,
-  },
-  {
     title: 'COMPLAINTS',
     group: true,
   },
@@ -15,6 +9,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
     title: 'Complaints',
     icon: 'nb-list',
     link: '/pages/complaints',
+    home: true,
   },
   {
     title: 'USERS',
@@ -36,12 +31,6 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
 
 export const MENU_ITEMS_CONSULTANT: NbMenuItem[] = [
   {
-    title: 'Home',
-    icon: 'nb-home',
-    link: '/pages/home',
-    home: true,
-  },
-  {
     title: 'COMPLAINTS',
     group: true,
   },
@@ -49,6 +38,7 @@ export const MENU_ITEMS_CONSULTANT: NbMenuItem[] = [
     title: 'Complaints',
     icon: 'nb-list',
     link: '/pages/complaints',
+    home: true,
   },
   {
     title: 'USERS',
@@ -68,12 +58,6 @@ export const MENU_ITEMS_CONSULTANT: NbMenuItem[] = [
 
 export const MENU_ITEMS_CUSTOMER: NbMenuItem[] = [
   {
-    title: 'Home',
-    icon: 'nb-home',
-    link: '/pages/home',
-    home: true,
-  },
-  {
     title: 'COMPLAINTS',
     group: true,
   },
@@ -81,6 +65,7 @@ export const MENU_ITEMS_CUSTOMER: NbMenuItem[] = [
     title: 'My Complaints',
     icon: 'nb-list',
     link: '/pages/complaints',
+    home: true,
   },
   {
     title: 'Add Complaint',

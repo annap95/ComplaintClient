@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 import { UserService } from "../../../@core/services/user.service";
 import { AuthService } from "../../../@core/services/auth.service";
 import { Employee } from "../../../@core/model/employee";
-import {EmployeePutRequest} from "../../../@core/model/requests/employee-put-request";
+import { EmployeePutRequest } from "../../../@core/model/requests/employee-put-request";
 
 @Component({
   selector: 'employee-data',

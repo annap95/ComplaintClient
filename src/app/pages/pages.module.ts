@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
-import { HomeModule } from './home/home.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -12,8 +11,7 @@ const PAGES_COMPONENTS = [
 @NgModule({
   imports: [
     PagesRoutingModule,
-    ThemeModule,
-    HomeModule
+    ThemeModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
