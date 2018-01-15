@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 import {UserService} from "../../../@core/services/user.service";
 import {Customer} from "../../../@core/model/customer";
 import {AuthService} from "../../../@core/services/auth.service";
+import {CustomerPutRequest} from "../../../@core/model/requests/customer-put-request";
 
 @Component({
   selector: 'customer-data',
@@ -22,7 +23,8 @@ export class CustomerDataComponent implements OnInit {
   phone: AbstractControl;
   dataProcessingPermission: AbstractControl;
 
-  error: boolean;
+  error: boolean = false;
+  success: boolean = false;
   submitted: boolean = false;
 
   editMode: boolean = false;
@@ -116,11 +118,37 @@ export class CustomerDataComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-    return this.form.valid && this.dataProcessingPermission.value == true &&
+    return this.form.valid && !this.submitted &&
+           this.dataProcessingPermission.value == true &&
            this.customer && this.newCustomer && !this.customer.equals(this.newCustomer);
   }
 
   updateCustomer() {
-    // return this.userService.updateCustomer(cu)
+    if(!this.submitted && this.form.valid) {
+      this.submitted = true;
+      let request: CustomerPutRequest = {
+        name: this.newCustomer.name,
+        surname: this.newCustomer.surname,
+        streetName: this.newCustomer.streetName,
+        streetNumber: this.newCustomer.streetNumber,
+        postalCode: this.newCustomer.postalCode,
+        town: this.newCustomer.town,
+        phone: this.newCustomer.phone,
+        dataProcessingPermission: this.dataProcessingPermission.value
+      };
+      return this.userService.updateCustomer(this.customer.customerId, request).subscribe(
+        (success) => {
+          this.error = false;
+          this.success = true;
+          this.submitted = false;
+          this.switchMode();
+        },
+        (error) => {
+          this.error = true;
+          this.success = false;
+          this.submitted = false;
+        }
+      );
+    }
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { HttpWrapper } from "../http-wrapper";
 import { environment } from "../../../environments/environment";
-import {Customer} from "../model/customer";
+import {CustomerPutRequest} from "../model/requests/customer-put-request";
 
 @Injectable()
 export class UserService {
@@ -21,7 +21,7 @@ export class UserService {
       .map(res => res.json());
   }
 
-  updateCustomer(customer: Customer) {
-    return this.http.put(this.url, customer);
+  updateCustomer(customerId: number, request: CustomerPutRequest) {
+    return this.http.put(this.url + "user/customer/" + customerId, request);
   }
 }
