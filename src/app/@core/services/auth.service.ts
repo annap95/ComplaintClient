@@ -27,6 +27,10 @@ export class AuthService {
     return localStorage.getItem('customerId');
   }
 
+  getEmployeeId(): string {
+    return localStorage.getItem('employeeId');
+  }
+
   login(email: string, password: string) {
     let data = btoa(email + ":" + password);
     let headers = new Headers();

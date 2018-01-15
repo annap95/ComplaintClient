@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import {CustomerDataComponent} from "./customer-data/customer-data.component";
 import {AuthService} from "../../@core/services/auth.service";
 import {UserService} from "../../@core/services/user.service";
+import {EmployeeDataComponent} from "./employee-data/employee-data.component";
 
 @NgModule({
   imports: [
@@ -20,10 +21,12 @@ import {UserService} from "../../@core/services/user.service";
   ],
   declarations: [
     ...routedComponents,
-    CustomerDataComponent
+    CustomerDataComponent,
+    EmployeeDataComponent
   ],
   exports: [
-    CustomerDataComponent
+    CustomerDataComponent,
+    EmployeeDataComponent
   ],
   providers: [
     AuthService,

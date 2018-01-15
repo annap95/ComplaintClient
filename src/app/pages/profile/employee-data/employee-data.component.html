@@ -1,0 +1,70 @@
+<div class="col-md-9">
+  <nb-card>
+    <nb-card-header>
+      Employee Data
+      <button *ngIf="!editMode" (click)="switchMode()" class="btn btn-success btn-semi-round btn-sm switchMode">
+        Edit
+      </button>
+      <button *ngIf="editMode" (click)="switchMode()" class="btn btn-success btn-semi-round btn-sm switchMode">
+        View
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="!submitted && success" class="alert alert-success" role="alert">
+        <div><strong>Employee Data successfully updated</strong></div>
+      </div>
+      <div *ngIf="!submitted && error" class="alert alert-danger" role="alert">
+        <div><strong>Error occurred while Employee Data updating</strong></div>
+      </div>
+      <form class="form-horizontal" (ngSubmit)="updateEmployee()" #form="ngForm">
+        <div class="form-group row">
+          <label for="employeeId" class="col-sm-3 form-control-label">Employee ID</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="employeeId" placeholder="Employee ID"
+                   [formControl]="employeeId"
+                   [class.form-control-success]="employeeId.valid"
+                   [class.form-control-danger]="employeeId.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 form-control-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="name" placeholder="Name"
+                   [formControl]="name"
+                   [class.form-control-success]="name.valid"
+                   [class.form-control-danger]="name.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="surname" class="col-sm-3 form-control-label">Surname</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="surname" placeholder="Surname"
+                   [formControl]="surname"
+                   [class.form-control-success]="surname.valid"
+                   [class.form-control-danger]="surname.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="role" class="col-sm-3 form-control-label">Role</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="role" placeholder="Role"
+                   [formControl]="role"
+                   [class.form-control-success]="role.valid"
+                   [class.form-control-danger]="role.invalid">
+          </div>
+        </div>
+        <div *ngIf="editMode" class="form-group row">
+          <div class="offset-sm-3 col-sm-9">
+            <button type="submit" class="btn btn-hero-success" [disabled]="!isFormValid()">
+              Update Employee Data
+            </button>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>
