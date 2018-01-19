@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 
 import { CustomerPutRequest } from "../model/requests/customer-put-request";
 import { EmployeePutRequest } from "../model/requests/employee-put-request";
+import {PaginationRequest} from "../model/pagination/pagination-request";
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,10 @@ export class UserService {
 
   updateCustomer(customerId: number, request: CustomerPutRequest) {
     return this.http.put(this.url + "user/customer/" + customerId, request);
+  }
+
+  getCustomers(request: PaginationRequest) {
+    return this.http.post(this.url + "user/customer", request);
   }
 
   getEmployee(employeeId: number) {

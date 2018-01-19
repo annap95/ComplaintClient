@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import {Component, OnInit} from '@angular/core';
 
-import { SmartTableService } from '../../../@core/data/smart-table.service';
+import {UserService} from "../../../@core/services/user.service";
+import {PaginationRequest} from "../../../@core/model/pagination/pagination-request";
+import {ServerDataSource} from "../../../@theme/ng2-smart-table/lib/data-source/server/server.data-source";
+import {Table} from "../../../@theme/ng2-smart-table/lib/data-source/table";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'customers-list',
@@ -12,14 +15,14 @@ import { SmartTableService } from '../../../@core/data/smart-table.service';
     }
   `],
 })
-export class CustomersListComponent {
+export class CustomersListComponent implements OnInit, Table {
 
   settings = {
     actions: {
       columnTitle: 'Actions',
       add: false,
       edit: true,
-      delete: true,
+      delete: false,
       custom: [],
       position: 'right', // left|right
     },
@@ -28,12 +31,8 @@ export class CustomersListComponent {
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
     },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
     columns: {
-      id: {
+      customerId: {
         title: 'ID',
         type: 'number',
       },
@@ -61,29 +60,43 @@ export class CustomersListComponent {
         title: 'Town',
         type: 'string',
       },
+      phone: {
+        title: 'Phone',
+        type: 'string',
+      },
       email: {
         title: 'E-mail',
         type: 'string',
       },
-      phone: {
-        title: 'phone',
-        type: 'string',
+      enabled: {
+        title: 'Enabled',
+        type: 'boolean',
+        filter: {
+          type: 'checkbox',
+          // config: {
+          //   true: 'Yes',
+          //   false: 'No',
+          //   resetText: 'clear',
+          // },
+        },
       }
     },
   };
 
-  source: LocalDataSource = new LocalDataSource();
+  source: ServerDataSource;
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.source = new ServerDataSource(this);
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+  getResourcesList(paginationRequest: PaginationRequest): Observable<any> {
+    return this.userService.getCustomers(paginationRequest);
+  }
+
+  getPageSize(): number {
+    return 2;
   }
 }
