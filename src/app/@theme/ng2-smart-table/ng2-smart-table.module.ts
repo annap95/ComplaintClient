@@ -9,6 +9,7 @@ import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
 
 import { Ng2SmartTableComponent } from './ng2-smart-table.component';
+import { ButtonViewComponent } from "./components/button-view.component";
 
 @NgModule({
   imports: [
@@ -21,8 +22,12 @@ import { Ng2SmartTableComponent } from './ng2-smart-table.component';
     TBodyModule,
     THeadModule,
   ],
+  entryComponents: [
+    ButtonViewComponent
+  ],
   declarations: [
     Ng2SmartTableComponent,
+    ButtonViewComponent
   ],
   exports: [
     Ng2SmartTableComponent,

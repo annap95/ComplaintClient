@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 
 import {UserService} from "../../../@core/services/user.service";
 import {PaginationRequest} from "../../../@core/model/pagination/pagination-request";
 import {ServerDataSource} from "../../../@theme/ng2-smart-table/lib/data-source/server/server.data-source";
 import {Table} from "../../../@theme/ng2-smart-table/lib/data-source/table";
 import {Observable} from "rxjs";
+import {CustomerUserPutRequest} from "../../../@core/model/requests/customer-user-put-request";
+import {ButtonViewComponent} from "../../../@theme/ng2-smart-table/components/button-view.component";
 
 @Component({
   selector: 'customers-list',
@@ -18,18 +20,14 @@ import {Observable} from "rxjs";
 export class CustomersListComponent implements OnInit, Table {
 
   settings = {
+    mode: 'external',
     actions: {
-      columnTitle: 'Actions',
+      columnTitle: '',
       add: false,
-      edit: true,
+      edit: false,
       delete: false,
       custom: [],
-      position: 'right', // left|right
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+      position: 'left', // left|right
     },
     columns: {
       customerId: {
@@ -71,6 +69,7 @@ export class CustomersListComponent implements OnInit, Table {
       enabled: {
         title: 'Enabled',
         type: 'boolean',
+        valuePrepareFunction: (value) => { return value ? 'Yes' : 'No' },
         filter: {
           type: 'checkbox',
           // config: {
@@ -79,12 +78,34 @@ export class CustomersListComponent implements OnInit, Table {
           //   resetText: 'clear',
           // },
         },
-      }
+      },
+      button: {
+        title: '',
+        type: 'custom',
+        filter: false,
+        renderComponent: ButtonViewComponent,
+        valuePrepareFunction: (value, row) => {
+          if(row.enabled)
+            return "Disable";
+          return "Enable";
+        },
+        onComponentInitFunction: (instance: any) => {
+          instance.save.subscribe(row => {
+            let customerUserPutRequest = new CustomerUserPutRequest();
+            customerUserPutRequest.enabled = !row.enabled;
+            console.log(customerUserPutRequest);
+            return this.userService.updateCustomerUser(row.customerId, customerUserPutRequest)
+              .subscribe(res => {
+                console.log(res);
+                this.source.refresh();
+              });
+          });
+        }
+      },
     },
   };
 
   source: ServerDataSource;
-
 
   constructor(private userService: UserService) { }
 
@@ -99,4 +120,7 @@ export class CustomersListComponent implements OnInit, Table {
   getPageSize(): number {
     return 2;
   }
+
 }
+
+
