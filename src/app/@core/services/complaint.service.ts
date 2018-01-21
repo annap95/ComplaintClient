@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpWrapper } from "../http-wrapper";
 import { ComplaintAddRequest } from "../model/requests/complaint-add-request";
 import { environment } from "../../../environments/environment";
+import { PaginationRequest } from "../model/pagination/pagination-request";
 
 @Injectable()
 export class ComplaintService {
@@ -14,5 +15,9 @@ export class ComplaintService {
 
   addComplaint(complaint: ComplaintAddRequest) {
     return this.http.post(this.url + "complaint", complaint);
+  }
+
+  getComplaints(request: PaginationRequest) {
+    return this.http.post(this.url + "complaint", request);
   }
 }

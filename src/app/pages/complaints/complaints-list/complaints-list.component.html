@@ -1,1 +1,10 @@
-<p> ComplaintsList works </p>
+<nb-card>
+  <nb-card-header>
+    Complaints
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="viewComplaint($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

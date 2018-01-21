@@ -16,11 +16,10 @@ const routes: Routes = [{
     path: 'profile',
     loadChildren: './profile/profile.module#ProfileModule'
   }, {
-      path: '',
-      redirectTo: 'home',
-      pathMatch: 'full',
-    }
-  ],
+    path: '',
+    redirectTo: 'pages/complaints',
+    pathMatch: 'full',
+  }],
 }];
 
 @NgModule({

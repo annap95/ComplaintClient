@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('customerId', customerId);
             localStorage.setItem('employeeId', employeeId);
             this.error = false;
-            this.router.navigate(['home']);
+            this.router.navigate(['pages/complaints']);
           },
           (error) => {
             this.form.reset();

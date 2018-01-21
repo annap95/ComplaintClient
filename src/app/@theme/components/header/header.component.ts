@@ -32,6 +32,6 @@ export class HeaderComponent {
   }
 
   goToHome() {
-    this.router.navigate(['/pages/home']);
+    this.router.navigate(['/pages/complaints']);
   }
 }

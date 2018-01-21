@@ -6,6 +6,7 @@ import { ComplaintService } from "../../@core/services/complaint.service";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {Ng2SmartTableModule} from "../../@theme/ng2-smart-table/ng2-smart-table.module";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {RouterModule} from "@angular/router";
     FormsModule,
     CommonModule,
     RouterModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     ...routedComponents,
