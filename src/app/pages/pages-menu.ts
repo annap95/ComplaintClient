@@ -27,7 +27,8 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
   },
   {
     title: 'Add Employee',
-    link: '',
+    icon: 'nb-plus-circled',
+    link: '/pages/users/employees/add',
   }
 ];
 

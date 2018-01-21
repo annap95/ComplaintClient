@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import { environment } from "../../../environments/environment";
+import {EmployeeAddRequest} from "../model/requests/employee-add-request";
 
 @Injectable()
 export class AuthService {
@@ -61,5 +62,13 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Authorization", data);
     return this.http.post(this.url + "auth/register/customer", null, {headers: headers});
+  }
+
+  registerEmployee(email: string, password: string, employeeAddRequest: EmployeeAddRequest) {
+    let data = btoa(email + ":" + password);
+    let headers = new Headers();
+    headers.append("Authorization", data);
+    headers.append("AUTH-TOKEN", localStorage.getItem("authToken"));
+    return this.http.post(this.url + "auth/register/employee", employeeAddRequest, {headers: headers});
   }
 }

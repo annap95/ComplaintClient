@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CustomersListComponent } from "./customers-list/customers-list.component";
 import { EmployeesListComponent } from "./employees-list/employees-list.component";
+import { AddEmployeeComponent } from "./add-employee/add-employee.component";
 
 const routes: Routes = [{
   path: '',
@@ -11,7 +12,13 @@ const routes: Routes = [{
     component: CustomersListComponent,
   }, {
     path: 'employees',
-    component: EmployeesListComponent,
+    children: [{
+      path: '',
+      component: EmployeesListComponent,
+    }, {
+      path: 'add',
+      component: AddEmployeeComponent
+    }]
   }],
 }];
 
@@ -24,4 +31,5 @@ export class UsersRoutingModule { }
 export const routedComponents = [
   CustomersListComponent,
   EmployeesListComponent,
+  AddEmployeeComponent
 ];

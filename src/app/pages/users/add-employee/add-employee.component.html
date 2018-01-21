@@ -1,0 +1,97 @@
+<div class="col-md-9">
+  <nb-card>
+    <nb-card-header>
+      Add Employee
+    </nb-card-header>
+    <nb-card-body>
+      <form class="form-horizontal" (ngSubmit)="addEmployee()" #form="ngForm">
+        <div *ngIf="!submitted && success" class="alert alert-success" role="alert">
+          <div><strong>Employee successfully added</strong></div>
+        </div>
+        <div *ngIf="!submitted && error" class="alert alert-danger" role="alert">
+          <div><strong>Register failed (probably account exists)</strong></div>
+        </div>
+        <div class="form-group row">
+          <label for="input-email" class="col-sm-3 form-control-label">Email address</label>
+          <div class="col-sm-9">
+            <input name="email" [formControl]="email" id="input-email" class="form-control"
+                   placeholder="Email address"
+                   [class.form-control-success]="email.touched && email.valid"
+                   [class.form-control-danger]="email.touched && email.invalid"
+                   autofocus>
+            <small class="form-text error" *ngIf="email.touched && email.invalid">
+              Correct email is required!
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="input-password" class="col-sm-3 form-control-label">Password</label>
+          <div class="col-sm-9">
+            <input name="password" [formControl]="password" type="password" id="input-password"
+                   class="form-control" placeholder="Password"
+                   [class.form-control-success]="password.touched && password.valid"
+                   [class.form-control-danger]="password.touched && password.invalid">
+            <small class="form-text error" *ngIf="password.touched && password.invalid">
+              Password (5 to 20 characters) is required!
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="input-re-password" class="col-sm-3 form-control-label">Confirm password</label>
+          <div class="col-sm-9">
+            <input name="rePass" [formControl]="confirmPassword" type="password" id="input-re-password"
+                   class="form-control" placeholder="Confirm Password"
+                   [class.form-control-success]="confirmPassword.touched && confirmPassword.valid"
+                   [class.form-control-danger]="confirmPassword.touched && confirmPassword.invalid">
+            <small class="form-text error" *ngIf="confirmPassword.touched && confirmPassword.invalid">
+              Password (5 to 20 characters) is required!
+            </small>
+            <small class="form-text error" *ngIf="password.touched && password.valid &&
+                                                      confirmPassword.touched && confirmPassword.valid &&
+                                                      passwords.invalid">
+              Passwords must be equal!
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 form-control-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="name" placeholder="Name"
+                   [formControl]="name"
+                   [class.form-control-success]="name.touched && name.valid"
+                   [class.form-control-danger]="name.touched && name.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="surname" class="col-sm-3 form-control-label">Surname</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control"
+                   id="surname" placeholder="Surname"
+                   [formControl]="surname"
+                   [class.form-control-success]="surname.touched && surname.valid"
+                   [class.form-control-danger]="surname.touched && surname.invalid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="role" class="col-sm-3 form-control-label">Role</label>
+          <div class="col-sm-9">
+            <select class="form-control" [formControl]="role"
+                    id="role" placeholder="Role"
+                    [class.form-control-success]="role.touched && role.valid"
+                    [class.form-control-danger]="role.touched && role.invalid">
+              <option *ngFor="let r of roles" value="{{r}}">{{r}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-sm-3 col-sm-9">
+            <button type="submit" class="btn btn-hero-success" [disabled]="!isFormValid()">
+              Add Employee
+            </button>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>
