@@ -7,6 +7,7 @@ import { CustomerPutRequest } from "../model/requests/customer-put-request";
 import { EmployeePutRequest } from "../model/requests/employee-put-request";
 import {PaginationRequest} from "../model/pagination/pagination-request";
 import {CustomerUserPutRequest} from "../model/requests/customer-user-put-request";
+import {EmployeeUserPutRequest} from "../model/requests/employee-user-put-request";
 
 @Injectable()
 export class UserService {
@@ -40,5 +41,13 @@ export class UserService {
 
   updateEmployee(employeeId: number, request: EmployeePutRequest) {
     return this.http.put(this.url + "user/employee/" + employeeId, request);
+  }
+
+  updateEmployeeUser(employeeId: number, request: EmployeeUserPutRequest) {
+    return this.http.put(this.url + "user/employee/" + employeeId + "/user", request);
+  }
+
+  getEmployees(request: PaginationRequest) {
+    return this.http.post(this.url + "user/employee", request);
   }
 }

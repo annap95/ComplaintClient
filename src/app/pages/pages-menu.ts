@@ -17,11 +17,13 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
   },
   {
     title: 'Customers',
+    icon: 'ion-ios-people',
     link: '/pages/users/customers',
   },
   {
     title: 'Employees',
-    link: '',
+    icon: 'ion-ios-people-outline',
+    link: '/pages/users/employees',
   },
   {
     title: 'Add Employee',
@@ -46,13 +48,8 @@ export const MENU_ITEMS_CONSULTANT: NbMenuItem[] = [
   },
   {
     title: 'Customers',
-    icon: '',
+    icon: 'on-ios-people',
     link: '/pages/users/customers',
-  },
-  {
-    title: 'Employees',
-    icon: '',
-    link: '',
   },
 ];
 

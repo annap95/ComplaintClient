@@ -4,7 +4,7 @@ import { ViewCell } from "./cell/cell-view-mode/view-cell";
 @Component({
   selector: 'button-view',
   template: `
-    <button (click)="onClick()" class="btn btn-success btn-semi-round btn-sm">{{ renderValue }}</button>
+    <button *ngIf="renderValue != ''" (click)="onClick()" class="btn btn-success btn-semi-round btn-sm">{{ renderValue }}</button>
   `,
 })
 export class ButtonViewComponent implements ViewCell, OnInit {

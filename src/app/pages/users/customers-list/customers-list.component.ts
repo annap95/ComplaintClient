@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {UserService} from "../../../@core/services/user.service";
 import {PaginationRequest} from "../../../@core/model/pagination/pagination-request";
@@ -93,10 +93,8 @@ export class CustomersListComponent implements OnInit, Table {
           instance.save.subscribe(row => {
             let customerUserPutRequest = new CustomerUserPutRequest();
             customerUserPutRequest.enabled = !row.enabled;
-            console.log(customerUserPutRequest);
             return this.userService.updateCustomerUser(row.customerId, customerUserPutRequest)
               .subscribe(res => {
-                console.log(res);
                 this.source.refresh();
               });
           });
@@ -122,5 +120,3 @@ export class CustomersListComponent implements OnInit, Table {
   }
 
 }
-
-
