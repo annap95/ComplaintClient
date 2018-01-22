@@ -17,12 +17,10 @@ export class HttpWrapper {
   handleErrors(observable) {
     return observable.catch(
       (error) => {
-        if(error.status == 401) {
-          this.authService.logout();
-          this.router.navigate(['/auth/login']);
-        }
-        // 500
-        // unauthorized
+
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
+
         return Observable.throw(error);
       });
   }
