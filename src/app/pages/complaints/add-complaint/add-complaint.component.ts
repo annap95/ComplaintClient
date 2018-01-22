@@ -20,9 +20,10 @@ export class AddComplaintComponent {
   claim: AbstractControl;
   dataProcessingPermission: AbstractControl;
 
-  claimOptions = ['OPT1', 'OPT2', 'OPT3', 'OPT4'];
+  claims = ['REPAIR', 'SUBSTITUTION', 'PARTIALPAYBACK', 'FULLPAYBACK'];
 
-  error: boolean;
+  error: boolean = false;
+  success: boolean = false;
   submitted: boolean = false;
 
   constructor(fb: FormBuilder, private complaintService: ComplaintService) {
@@ -46,26 +47,36 @@ export class AddComplaintComponent {
     this.dataProcessingPermission = this.form.controls['dataProcessingPermission'];
   }
 
+  isFormValid(): boolean {
+    return this.form.valid && !this.submitted;
+  }
+
   addComplaint() {
-    let complaint: ComplaintAddRequest = {
-      productDescription: this.productDescription.value,
-      invoiceNumber: this.invoiceNumber.value,
-      purchaseDate: this.purchaseDate.value,
-      price: this.price.value,
-      iban: this.iban.value,
-      message: this.complaintReason.value,
-      claim: this.claim.value,
-      dataProcessingPermission: this.dataProcessingPermission.value
-    };
-    console.log(complaint);
-    return this.complaintService.addComplaint(complaint).subscribe(
-      (success) => {
-        console.log(success);
-      },
-      (error) => {
-        // this.form.reset();
-        console.log(error);
-      }
-    )
+    if(!this.submitted && this.form.valid) {
+      this.submitted = true;
+      let complaint: ComplaintAddRequest = {
+        productDescription: this.productDescription.value,
+        invoiceNumber: this.invoiceNumber.value,
+        purchaseDate: this.purchaseDate.value,
+        price: this.price.value,
+        iban: this.iban.value,
+        message: this.complaintReason.value,
+        claim: this.claim.value,
+        dataProcessingPermission: this.dataProcessingPermission.value
+      };
+      return this.complaintService.addComplaint(complaint).subscribe(
+        (success) => {
+          this.form.reset();
+          this.error = false;
+          this.success = true;
+          this.submitted = false;
+        },
+        (error) => {
+          this.error = true;
+          this.success = false;
+          this.submitted = false;
+        }
+      )
+    }
   }
 }

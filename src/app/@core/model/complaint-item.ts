@@ -2,7 +2,7 @@ export class ComplaintItem {
 
   complaintId: number;
   status: string;
-  submitDate: string; // todo date
+  submitDate: string;
   name: string;
   surname: string;
 

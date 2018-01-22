@@ -14,10 +14,16 @@ export class ComplaintService {
   }
 
   addComplaint(complaint: ComplaintAddRequest) {
-    return this.http.post(this.url + "complaint", complaint);
+    return this.http.put(this.url + "complaint", complaint);
   }
 
   getComplaints(request: PaginationRequest) {
     return this.http.post(this.url + "complaint", request);
   }
+
+  getComplaint(complaintId: number) {
+    return this.http.get(this.url + "complaint/" + complaintId)
+      .map(res => res.json());
+  }
+
 }

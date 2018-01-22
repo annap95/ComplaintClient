@@ -4,6 +4,7 @@ import { Table } from "../../../@theme/ng2-smart-table/lib/data-source/table";
 import { PaginationRequest } from "../../../@core/model/pagination/pagination-request";
 import { Observable } from "rxjs";
 import { ComplaintService } from "../../../@core/services/complaint.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'complaints-list',
@@ -51,7 +52,7 @@ export class ComplaintsListComponent implements OnInit, Table {
 
   source: ServerDataSource;
 
-  constructor(private complaintService: ComplaintService) { }
+  constructor(private complaintService: ComplaintService, private router: Router) { }
 
   ngOnInit() {
     this.source = new ServerDataSource(this);
@@ -66,7 +67,8 @@ export class ComplaintsListComponent implements OnInit, Table {
   }
 
   viewComplaint(event: any) {
-    console.log(event);
+    let complaintId = event.data.complaintId;
+    return this.router.navigate(['pages/complaints/' + complaintId]);
   }
 
 }

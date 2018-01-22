@@ -1,1 +1,72 @@
-<p>ComplaintView works</p>
+<div class="row" *ngIf="complaint">
+  <div class="col-6">
+    <nb-card >
+      <nb-card-header>
+        Complaint #{{complaint.complaintId}}
+      </nb-card-header>
+      <nb-card-body>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+              <th class="text-nowrap" scope="row">ID</th>
+              <td>{{complaint.complaintId}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Status</th>
+              <td>{{complaint.status}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Submit date</th>
+              <td>{{complaint.submitDate}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Consider date</th>
+              <td>{{complaint.considerDate}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Product description</th>
+              <td>{{complaint.productDescription}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Invoice number</th>
+              <td>{{complaint.invoiceNumber}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Purchase date</th>
+              <td>{{complaint.purchaseDate}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Price</th>
+              <td>{{complaint.price}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Iban</th>
+              <td>{{complaint.iban}}</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Customer</th>
+              <td>{{complaint.customerResponse.name}} {{complaint.customerResponse.surname}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-6">
+    <nb-card>
+      <nb-card-body>
+        aaaa
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+
+<!--
+  complaintMessages: Array<any>;
+-->
+
+
+

@@ -3,6 +3,12 @@
     <nb-card-header>Add New Complaint</nb-card-header>
     <nb-card-body>
       <form class="form-horizontal" (ngSubmit)="addComplaint()" #form="ngForm">
+        <div *ngIf="!submitted && success" class="alert alert-success" role="alert">
+          <div><strong>Complaint successfully added</strong></div>
+        </div>
+        <div *ngIf="!submitted && error" class="alert alert-danger" role="alert">
+          <div><strong>Error occurred while adding new complaint</strong></div>
+        </div>
         <div class="form-group row">
           <label for="productDescription" class="col-sm-3 form-control-label">Product description</label>
           <div class="col-sm-9">
@@ -24,7 +30,6 @@
                    [class.form-control-danger]="invoiceNumber.touched && invoiceNumber.invalid">
           </div>
         </div>
-        <!--TODO-->
         <div class="form-group row">
           <label for="purchaseDate" class="col-sm-3 form-control-label">Purchase date</label>
           <div class="col-sm-9">
@@ -36,7 +41,6 @@
                    [class.form-control-danger]="purchaseDate.touched && purchaseDate.invalid">
           </div>
         </div>
-        <!--         <ng-datepicker [(ngModel)]="date" [options]="options"></ng-datepicker>-->
         <div class="form-group row">
           <label for="price" class="col-sm-3 form-control-label">Price</label>
           <div class="col-sm-9">
@@ -70,11 +74,12 @@
         <div class="form-group row">
           <label for="claim" class="col-sm-3 form-control-label">Claim</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control"
-                   id="claim" placeholder="Claim"
-                   [formControl]="claim"
-                   [class.form-control-success]="claim.touched && claim.valid"
-                   [class.form-control-danger]="claim.touched && claim.invalid">
+            <select class="form-control" [formControl]="claim"
+                    id="claim" placeholder="Claim"
+                    [class.form-control-success]="claim.touched && claim.valid"
+                    [class.form-control-danger]="claim.touched && claim.invalid">
+              <option *ngFor="let c of claims" value="{{c}}">{{c}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
@@ -90,7 +95,7 @@
         </div>
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
-            <button type="submit" class="btn btn-hero-success">Add Complaint</button>
+            <button type="submit" class="btn btn-hero-success" [disabled]="!isFormValid()">Add Complaint</button>
           </div>
         </div>
       </form>
