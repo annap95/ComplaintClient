@@ -1,8 +1,10 @@
 import {Customer} from "./customer";
+import {Message} from "./message";
+
 export class Complaint {
 
   complaintId: number;
-  complaintMessages: Array<any>;
+  complaintMessages: Array<Message>;
   submitDate: string;
   considerDate: string;
   status: string;
@@ -14,8 +16,3 @@ export class Complaint {
   iban: string;
 
 }
-
-
-/*
- private List<ComplaintMessageResponse> complaintMessages;
- */

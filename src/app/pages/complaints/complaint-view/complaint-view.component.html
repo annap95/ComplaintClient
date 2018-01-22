@@ -57,16 +57,8 @@
   <div class="col-6">
     <nb-card>
       <nb-card-body>
-        aaaa
+        <message-view *ngFor="let m of complaint.complaintMessages" [message]="m"></message-view>
       </nb-card-body>
     </nb-card>
   </div>
 </div>
-
-
-<!--
-  complaintMessages: Array<any>;
--->
-
-
-

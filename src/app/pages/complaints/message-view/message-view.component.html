@@ -1,0 +1,15 @@
+<blockquote *ngIf="message && message.messageType=='CUSTOMER'" class="blockquote">
+  <p class="mb-0">
+  <div><span class="text-success">Date:</span> {{message.date}}</div>
+  <div><span class="text-success">Claim:</span> {{message.claim}}</div>
+  <div>{{message.message}}</div>
+</blockquote>
+
+<blockquote *ngIf="message && message.messageType=='EMPLOYEE'" class="blockquote-reverse">
+  <p class="mb-0">
+  <div><span class="text-success">Date:</span> {{message.date}}</div>
+  <div><span class="text-success">Claim:</span> {{message.claim}}</div>
+  <div><span class="text-success">Decision:</span> {{message.decision}}</div>
+  <div>{{message.message}}</div>
+  <footer class="blockquote-footer">{{message.employeeResponse.name}} {{message.employeeResponse.surname}}</footer>
+</blockquote>
