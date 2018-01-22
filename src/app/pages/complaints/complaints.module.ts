@@ -8,6 +8,9 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {Ng2SmartTableModule} from "../../@theme/ng2-smart-table/ng2-smart-table.module";
 import {MessageViewComponent} from "./message-view/message-view.component";
+import {AddMessageComponent} from "./add-message/add-message.component";
+import {AddMessageCustomerComponent} from "./add-message/add-message-customer/add-message-customer.component";
+import {AddMessageEmployeeComponent} from "./add-message/add-message-employee/add-message-employee.component";
 
 @NgModule({
   imports: [
@@ -21,7 +24,10 @@ import {MessageViewComponent} from "./message-view/message-view.component";
   ],
   declarations: [
     ...routedComponents,
-    MessageViewComponent
+    MessageViewComponent,
+    AddMessageComponent,
+    AddMessageCustomerComponent,
+    AddMessageEmployeeComponent
   ],
   providers: [
     ComplaintService

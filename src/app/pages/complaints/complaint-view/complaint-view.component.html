@@ -55,10 +55,26 @@
     </nb-card>
   </div>
   <div class="col-6">
-    <nb-card>
-      <nb-card-body>
-        <message-view *ngFor="let m of complaint.complaintMessages" [message]="m"></message-view>
-      </nb-card-body>
-    </nb-card>
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-body>
+            <message-view *ngFor="let m of complaint.complaintMessages" [message]="m"></message-view>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            Add Message
+          </nb-card-header>
+          <nb-card-body>
+            <add-message [complaintId]="complaint.complaintId"></add-message>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
   </div>
 </div>

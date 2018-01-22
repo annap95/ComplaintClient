@@ -1,0 +1,34 @@
+<form class="form-horizontal" (ngSubmit)="addMessage()" #form="ngForm">
+  <div *ngIf="!submitted && success" class="alert alert-success" role="alert">
+    <div><strong>Message successfully added</strong></div>
+  </div>
+  <div *ngIf="!submitted && error" class="alert alert-danger" role="alert">
+    <div><strong>Error occurred while adding new message</strong></div>
+  </div>
+  <div class="form-group row">
+    <label for="message" class="col-sm-3 form-control-label">Message</label>
+    <div class="col-sm-9">
+      <textarea rows="6" class="form-control"
+                id="message" placeholder="Message"
+                [formControl]="message"
+                [class.form-control-success]="message.touched && message.valid"
+                [class.form-control-danger]="message.touched && message.invalid"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="claim" class="col-sm-3 form-control-label">Claim</label>
+    <div class="col-sm-9">
+      <select class="form-control" [formControl]="claim"
+              id="claim" placeholder="Claim"
+              [class.form-control-success]="claim.touched && claim.valid"
+              [class.form-control-danger]="claim.touched && claim.invalid">
+        <option *ngFor="let c of claims" value="{{c}}">{{c}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-sm-3 col-sm-9">
+      <button type="submit" class="btn btn-hero-success" [disabled]="!isFormValid()">Add Message</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,2 @@
+<add-message-customer *ngIf="userRole == 'CUSTOMER'" [complaintId]="complaintId"></add-message-customer>
+<add-message-employee *ngIf="userRole == 'CONSULTANT' || userRole == 'ADMIN'" [complaintId]="complaintId"></add-message-employee>
